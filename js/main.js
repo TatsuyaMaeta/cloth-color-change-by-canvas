@@ -18,7 +18,11 @@ const fillStartPostion = {
 };
 
 let currentImgPath;
-const imagePathArray = ["img/cloth1.png", "img/cloth2.png", "img/cloth3.png"];
+const imagePathArray = [
+    "./img/cloth1.png",
+    "./img/cloth2.png",
+    "../img/cloth3.png",
+];
 const imageDataPath = imagePathArray[0];
 currentImgPath = imageDataPath;
 
