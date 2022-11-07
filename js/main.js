@@ -19,9 +19,9 @@ const fillStartPostion = {
 
 let currentImgPath;
 const imagePathArray = [
-    "img/cloth1.png",
-    "img/cloth2.png",
-    "img/cloth3.png",
+    "img/clothes1.png",
+    "img/clothes2.png",
+    "img/clothes3.png",
 ];
 const imageDataPath = imagePathArray[0];
 currentImgPath = imageDataPath;
@@ -42,7 +42,7 @@ ctxMain.fillRect(
     canvasInfo.size.width,
     canvasInfo.size.height
 );
-// "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
+// "./img/clothes1.png";って書くとgithub Pagesだとエラーになるから注意
 var imageObjA = new Image();
 imageObjA.onload = function () {
     ctxMain.drawImage(imageObjA, image.position.width, image.position.height);
@@ -85,7 +85,7 @@ const callbackFunction = function (imagePath) {
             canvasInfo.size.width,
             canvasInfo.size.height
         );
-        // "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
+        // "./img/clothes1.png";って書くとgithub Pagesだとエラーになるから注意
         var imageObjA = new Image();
         imageObjA.onload = function () {
             ctxMain.drawImage(
@@ -169,23 +169,27 @@ colorButton.addEventListener("click", function () {
     );
     var imageObjB = new Image();
     imageObjB.onload = function () {
-        ctxXor.drawImage(imageObjB, image.position.width, image.position.height);
+        ctxXor.drawImage(
+            imageObjB,
+            image.position.width,
+            image.position.height
+        );
     };
     imageObjB.src = currentImgPath;
     ctxXor.globalCompositeOperation = "xor";
 });
 
-// cloth1のボタン
-const clothButtonA = document.getElementById("a");
-clothButtonA.addEventListener("click", callbackFunction(imagePathArray[0]));
+// clothes1のボタン
+const clothesButtonA = document.getElementById("a");
+clothesButtonA.addEventListener("click", callbackFunction(imagePathArray[0]));
 
 // cloth2のボタン
-const clothButtonB = document.getElementById("b");
-clothButtonB.addEventListener("click", callbackFunction(imagePathArray[1]));
+const clothesButtonB = document.getElementById("b");
+clothesButtonB.addEventListener("click", callbackFunction(imagePathArray[1]));
 
 // cloth3のボタン
-const clothButtonC = document.getElementById("c");
-clothButtonC.addEventListener("click", callbackFunction(imagePathArray[2]));
+const clothesButtonC = document.getElementById("c");
+clothesButtonC.addEventListener("click", callbackFunction(imagePathArray[2]));
 
 // addEventListenerのコールバック関数を切り出すためには下記のような記述をする必要がある
 // https://blog.enjoitech.com/article/222
@@ -194,7 +198,7 @@ clothButtonC.addEventListener("click", callbackFunction(imagePathArray[2]));
 //         console.log(`path is ${path}`);
 //     };
 // };
-// clothButtonC.addEventListener("click", callback(imagePathArray[2]));
+// clothesButtonC.addEventListener("click", callback(imagePathArray[2]));
 
 // 参照サイト
 // https://www.google.com/search?q=globalcompositeoperation+canvas+double&rlz=1C5CHFA_enJP844JP845&sxsrf=ALiCzsY5_9GZB_wjgSpFOzDtone36AKQ1Q:1667776686847&ei=rkBoY4auM8LCoASywYLYDg&start=10&sa=N&ved=2ahUKEwiGve-n2Jr7AhVCIYgKHbKgAOsQ8NMDegQIKBAW&biw=834&bih=639&dpr=2
