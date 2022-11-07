@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/reset.css" />
         <link rel="stylesheet" href="./css/style.css" />
     </head>
     <body>
@@ -20,13 +20,28 @@
                 キャンバスの表示内容を説明する代替テキストです。
             </canvas>
         </div>
+        <div id="image-select">
+            <button id="a">
+                <img src="img/cloth1.png" alt="普通のスカート" />
+            </button>
+            <button id="b">
+                <img src="img/cloth2.png" alt="ideeのスカート" />
+            </button>
+            <button id="c">
+                <img src="img/cloth3.png" alt="diorのスカート" />
+            </button>
+        </div>
         <div id="aaa"></div>
 
         <div id="color-picker">
-            <label for="head"><h3>カラーリングを選択</h3></label>
+            <label for="head"
+                ><div id="color-picker-title">カラーリングを選択</div></label
+            >
             <input type="color" id="addColor" name="head" value="#dc143c" />
             <button id="btn">決定</button>
         </div>
+        <br />
+        <footer>Version 1.2</footer>
         <script src="./js/main.js"></script>
     </body>
 </html>

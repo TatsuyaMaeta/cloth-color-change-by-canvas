@@ -8,13 +8,31 @@ canvas {
     mix-blend-mode: difference;
 }
 
-.cvs_wrapper{
+#image-select {
+    width: 500px;
+    margin: 16px auto 0;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#image-select img {
+    width: 100px;
+    height: 100px;
+    border: solid 0.5px;
+}
+
+.cvs_wrapper {
     justify-content: center;
     margin: 0 auto;
     width: 500px;
     height: 500px;
 }
 
-#color-picker{
+#color-picker {
     margin-top: 16px;
+}
+
+#color-picker-title {
+    font-size: 24px;
+    font-weight: bold;
 }

@@ -17,6 +17,11 @@ const fillStartPostion = {
     y: 0,
 };
 
+let currentImgPath;
+const imagePathArray = ["img/cloth1.png", "img/cloth2.png", "img/cloth3.png"];
+const imageDataPath = imagePathArray[0];
+currentImgPath = imageDataPath;
+
 // キャンバスの情報取得
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -33,13 +38,12 @@ ctx.fillRect(
     canvasInfo.size.width,
     canvasInfo.size.height
 );
-const imageDataPath = "./img/cloth1.png";
 // "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
 var imageObjA = new Image();
 imageObjA.onload = function () {
     ctx.drawImage(imageObjA, image.position.width, image.position.height);
 };
-imageObjA.src = imageDataPath;
+imageObjA.src = currentImgPath;
 ctx.globalCompositeOperation = "multiply";
 
 // スカート以外に対しての余白部分に対しての色の上書きによる視覚上の削除
@@ -54,8 +58,59 @@ var imageObjB = new Image();
 imageObjB.onload = function () {
     ctx1.drawImage(imageObjB, image.position.width, image.position.height);
 };
-imageObjB.src = imageDataPath;
+imageObjB.src = currentImgPath;
 ctx1.globalCompositeOperation = "xor";
+
+const callbackFunction = function (imagePath) {
+    return function () {
+        // 引数から渡されたimageの相対パスをこの関数内で使用しやすくするために変数に格納
+        currentImgPath = imagePath;
+
+        // clearRectしないと描画内容が新規更新されない。色がなぜか上塗りされる
+        ctx.clearRect(
+            fillStartPostion.x,
+            fillStartPostion.y,
+            canvasInfo.size.width,
+            canvasInfo.size.height
+        );
+        // スカートに対して色を乗算してカラーリング
+        ctx.fillStyle = "rgba(0, 0, 0, 0)";
+        ctx.fillRect(
+            fillStartPostion.x,
+            fillStartPostion.y,
+            canvasInfo.size.width,
+            canvasInfo.size.height
+        );
+        // "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
+        var imageObjA = new Image();
+        imageObjA.onload = function () {
+            ctx.drawImage(
+                imageObjA,
+                image.position.width,
+                image.position.height
+            );
+        };
+        imageObjA.src = currentImgPath;
+        ctx.globalCompositeOperation = "multiply";
+
+        // 白い側のcanvas
+        ctx1.clearRect(
+            fillStartPostion.x,
+            fillStartPostion.y,
+            canvasInfo.size.width,
+            canvasInfo.size.height
+        );
+        var imageObjB = new Image();
+        imageObjB.onload = function () {
+            ctx1.drawImage(
+                imageObjB,
+                image.position.width,
+                image.position.height
+            );
+        };
+        imageObjB.src = currentImgPath;
+    };
+};
 
 // ボタンクリックした際に指定色を重ねる
 const colorButton = document.getElementById("btn");
@@ -87,10 +142,51 @@ colorButton.addEventListener("click", function () {
     imageObjA.onload = function () {
         ctx.drawImage(imageObjA, image.position.width, image.position.height);
     };
-    imageObjA.src = imageDataPath;
+    imageObjA.src = currentImgPath;
+
+    // スカート以外に対しての余白部分に対しての色の上書きによる視覚上の削除
+    ctx1.clearRect(
+        fillStartPostion.x,
+        fillStartPostion.y,
+        canvasInfo.size.width,
+        canvasInfo.size.height
+    );
+    ctx1.fillStyle = "white"; //外側を白色に埋めてる
+
+    ctx1.fillRect(
+        fillStartPostion.x,
+        fillStartPostion.y,
+        canvasInfo.size.width,
+        canvasInfo.size.height
+    );
+    var imageObjB = new Image();
+    imageObjB.onload = function () {
+        ctx1.drawImage(imageObjB, image.position.width, image.position.height);
+    };
+    imageObjB.src = currentImgPath;
+    ctx1.globalCompositeOperation = "xor";
 });
 
-console.log(location.href);
+// cloth1のボタン
+const clothButtonA = document.getElementById("a");
+clothButtonA.addEventListener("click", callbackFunction(imagePathArray[0]));
+
+// cloth2のボタン
+const clothButtonB = document.getElementById("b");
+clothButtonB.addEventListener("click", callbackFunction(imagePathArray[1]));
+
+// cloth3のボタン
+const clothButtonC = document.getElementById("c");
+clothButtonC.addEventListener("click", callbackFunction(imagePathArray[2]));
+
+// addEventListenerのコールバック関数を切り出すためには下記のような記述をする必要がある
+// https://blog.enjoitech.com/article/222
+// var callback = function (path) {
+//     return function () {
+//         console.log(`path is ${path}`);
+//     };
+// };
+// clothButtonC.addEventListener("click", callback(imagePathArray[2]));
 
 // 参照サイト
 // https://www.google.com/search?q=globalcompositeoperation+canvas+double&rlz=1C5CHFA_enJP844JP845&sxsrf=ALiCzsY5_9GZB_wjgSpFOzDtone36AKQ1Q:1667776686847&ei=rkBoY4auM8LCoASywYLYDg&start=10&sa=N&ved=2ahUKEwiGve-n2Jr7AhVCIYgKHbKgAOsQ8NMDegQIKBAW&biw=834&bih=639&dpr=2
