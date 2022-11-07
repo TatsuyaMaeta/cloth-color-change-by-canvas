@@ -1,7 +1,21 @@
 // キャンバスのサイズ管理
-const sizePxH = 500;
-const sizePxW = 600;
+const canvasInfo = {
+    size: {
+        width: 600,
+        height: 500,
+    },
+};
 const sizeUnit = "px";
+const image = {
+    position: {
+        height: 50,
+        width: 150,
+    },
+};
+const fillStartPostion = {
+    x: 0,
+    y: 0,
+};
 
 // キャンバスの情報取得
 const canvas = document.getElementById("canvas");
@@ -13,22 +27,32 @@ const ctx1 = canvas1.getContext("2d");
 
 // スカートに対して色を乗算してカラーリング
 ctx.fillStyle = "rgba(0, 0, 0, 0)";
-ctx.fillRect(0, 10, sizePxW, sizePxH);
+ctx.fillRect(
+    fillStartPostion.x,
+    fillStartPostion.y,
+    canvasInfo.size.width,
+    canvasInfo.size.height
+);
 const imageDataPath = "./img/cloth1.png";
 // "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
 var imageObjA = new Image();
 imageObjA.onload = function () {
-    ctx.drawImage(imageObjA, 0, 10);
+    ctx.drawImage(imageObjA, image.position.width, image.position.height);
 };
 imageObjA.src = imageDataPath;
 ctx.globalCompositeOperation = "multiply";
 
 // スカート以外に対しての余白部分に対しての色の上書きによる視覚上の削除
 ctx1.fillStyle = "white"; //外側を白色に埋めてる
-ctx1.fillRect(0, 10, sizePxW, sizePxH);
+ctx1.fillRect(
+    fillStartPostion.x,
+    fillStartPostion.y,
+    canvasInfo.size.width,
+    canvasInfo.size.height
+);
 var imageObjB = new Image();
 imageObjB.onload = function () {
-    ctx1.drawImage(imageObjB, 0, 10);
+    ctx1.drawImage(imageObjB, image.position.width, image.position.height);
 };
 imageObjB.src = imageDataPath;
 ctx1.globalCompositeOperation = "xor";
@@ -44,14 +68,24 @@ colorButton.addEventListener("click", function () {
     console.log(`RGB: ${rgbRed},${rgbGreen},${rgbBlue}`);
 
     // clearRectしないと描画内容が新規更新されない。色がなぜか上塗りされる
-    ctx.clearRect(0, 0, sizePxW, sizePxH);
+    ctx.clearRect(
+        fillStartPostion.x,
+        fillStartPostion.y,
+        canvasInfo.size.width,
+        canvasInfo.size.height
+    );
 
     ctx.fillStyle = `rgba(${rgbRed},${rgbGreen},${rgbBlue}, 0.7)`;
-    ctx.fillRect(0, 10, sizePxW, sizePxH);
+    ctx.fillRect(
+        fillStartPostion.x,
+        fillStartPostion.y,
+        canvasInfo.size.width,
+        canvasInfo.size.height
+    );
 
     var imageObjA = new Image();
     imageObjA.onload = function () {
-        ctx.drawImage(imageObjA, 0, 10);
+        ctx.drawImage(imageObjA, image.position.width, image.position.height);
     };
     imageObjA.src = imageDataPath;
 });
