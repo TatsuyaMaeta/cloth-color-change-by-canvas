@@ -2,9 +2,9 @@ console.log("for github pages");
 var rootPath = "https://tatsuyamaeta.github.io/cloth-color-change-by-canvas/";
 
 // 対象の GitHub Pages から呼び出されていなければ、何も処理せず終了する
-if (location.href.indexOf(rootPath) < 0) {
-    return;
-}
+// if (location.href.indexOf(rootPath) < 0) {
+//     return;
+// }
 
 var replaceAttribute = function (elementName, attributeName) {
     // console.log(elementName, attributeName, '置換処理開始');

@@ -13,7 +13,7 @@ const ctx1 = canvas1.getContext("2d");
 // スカートに対して色を乗算してカラーリング
 ctx.fillStyle = "rgba(225, 210, 10, 0.8)";
 ctx.fillRect(0, 10, sizePx, sizePx);
-var imageData = "../img/cloth1.png";
+var imageData = "../../cloth-color-change-by-canvas/img/cloth1.png";
 var imageObjA = new Image();
 imageObjA.onload = function () {
     ctx.drawImage(imageObjA, 0, 10);
