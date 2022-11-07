@@ -11,14 +11,15 @@ const canvas1 = document.getElementById("canvas1");
 const ctx1 = canvas1.getContext("2d");
 
 // スカートに対して色を乗算してカラーリング
-ctx.fillStyle = "rgba(225, 210, 10, 0.8)";
+ctx.fillStyle = "rgba(0, 0, 0, 0)";
 ctx.fillRect(0, 10, sizePx, sizePx);
-var imageData = "img/cloth1.png";
+const imageDataPath = "./img/cloth1.png";
+// "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
 var imageObjA = new Image();
 imageObjA.onload = function () {
     ctx.drawImage(imageObjA, 0, 10);
 };
-imageObjA.src = imageData;
+imageObjA.src = imageDataPath;
 ctx.globalCompositeOperation = "multiply";
 
 // スカート以外に対しての余白部分に対しての色の上書きによる視覚上の削除
@@ -28,7 +29,7 @@ var imageObjB = new Image();
 imageObjB.onload = function () {
     ctx1.drawImage(imageObjB, 0, 10);
 };
-imageObjB.src = imageData;
+imageObjB.src = imageDataPath;
 ctx1.globalCompositeOperation = "xor";
 
 // ボタンクリックした際に指定色を重ねる
@@ -44,14 +45,14 @@ colorButton.addEventListener("click", function () {
     // clearRectしないと描画内容が新規更新されない。色がなぜか上塗りされる
     ctx.clearRect(0, 0, sizePx, sizePx);
 
-    ctx.fillStyle = `rgba(${rgbRed},${rgbGreen},${rgbBlue}, 0.8)`;
+    ctx.fillStyle = `rgba(${rgbRed},${rgbGreen},${rgbBlue}, 0.7)`;
     ctx.fillRect(0, 10, sizePx, sizePx);
 
     var imageObjA = new Image();
     imageObjA.onload = function () {
         ctx.drawImage(imageObjA, 0, 10);
     };
-    imageObjA.src = imageData;
+    imageObjA.src = imageDataPath;
 });
 
 console.log(location.href);
