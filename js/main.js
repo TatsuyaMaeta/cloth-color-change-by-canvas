@@ -27,16 +27,16 @@ const imageDataPath = imagePathArray[0];
 currentImgPath = imageDataPath;
 
 // キャンバスの情報取得
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvasMain = document.getElementById("canvasMain");
+const ctxMain = canvasMain.getContext("2d");
 
 // キャンバスの情報取得
-const canvas1 = document.getElementById("canvas1");
-const ctx1 = canvas1.getContext("2d");
+const canvasXor = document.getElementById("canvasXor");
+const ctxXor = canvasXor.getContext("2d");
 
 // スカートに対して色を乗算してカラーリング
-ctx.fillStyle = "rgba(0, 0, 0, 0)";
-ctx.fillRect(
+ctxMain.fillStyle = "rgba(0, 0, 0, 0)";
+ctxMain.fillRect(
     fillStartPostion.x,
     fillStartPostion.y,
     canvasInfo.size.width,
@@ -45,14 +45,14 @@ ctx.fillRect(
 // "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
 var imageObjA = new Image();
 imageObjA.onload = function () {
-    ctx.drawImage(imageObjA, image.position.width, image.position.height);
+    ctxMain.drawImage(imageObjA, image.position.width, image.position.height);
 };
 imageObjA.src = currentImgPath;
-ctx.globalCompositeOperation = "multiply";
+ctxMain.globalCompositeOperation = "multiply";
 
 // スカート以外に対しての余白部分に対しての色の上書きによる視覚上の削除
-ctx1.fillStyle = "white"; //外側を白色に埋めてる
-ctx1.fillRect(
+ctxXor.fillStyle = "white"; //外側を白色に埋めてる
+ctxXor.fillRect(
     fillStartPostion.x,
     fillStartPostion.y,
     canvasInfo.size.width,
@@ -60,10 +60,10 @@ ctx1.fillRect(
 );
 var imageObjB = new Image();
 imageObjB.onload = function () {
-    ctx1.drawImage(imageObjB, image.position.width, image.position.height);
+    ctxXor.drawImage(imageObjB, image.position.width, image.position.height);
 };
 imageObjB.src = currentImgPath;
-ctx1.globalCompositeOperation = "xor";
+ctxXor.globalCompositeOperation = "xor";
 
 const callbackFunction = function (imagePath) {
     return function () {
@@ -71,15 +71,15 @@ const callbackFunction = function (imagePath) {
         currentImgPath = imagePath;
 
         // clearRectしないと描画内容が新規更新されない。色がなぜか上塗りされる
-        ctx.clearRect(
+        ctxMain.clearRect(
             fillStartPostion.x,
             fillStartPostion.y,
             canvasInfo.size.width,
             canvasInfo.size.height
         );
         // スカートに対して色を乗算してカラーリング
-        ctx.fillStyle = "rgba(0, 0, 0, 0)";
-        ctx.fillRect(
+        ctxMain.fillStyle = "rgba(0, 0, 0, 0)";
+        ctxMain.fillRect(
             fillStartPostion.x,
             fillStartPostion.y,
             canvasInfo.size.width,
@@ -88,17 +88,17 @@ const callbackFunction = function (imagePath) {
         // "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
         var imageObjA = new Image();
         imageObjA.onload = function () {
-            ctx.drawImage(
+            ctxMain.drawImage(
                 imageObjA,
                 image.position.width,
                 image.position.height
             );
         };
         imageObjA.src = currentImgPath;
-        ctx.globalCompositeOperation = "multiply";
+        ctxMain.globalCompositeOperation = "multiply";
 
         // 白い側のcanvas
-        ctx1.clearRect(
+        ctxXor.clearRect(
             fillStartPostion.x,
             fillStartPostion.y,
             canvasInfo.size.width,
@@ -106,7 +106,7 @@ const callbackFunction = function (imagePath) {
         );
         var imageObjB = new Image();
         imageObjB.onload = function () {
-            ctx1.drawImage(
+            ctxXor.drawImage(
                 imageObjB,
                 image.position.width,
                 image.position.height
@@ -127,15 +127,15 @@ colorButton.addEventListener("click", function () {
     console.log(`RGB: ${rgbRed},${rgbGreen},${rgbBlue}`);
 
     // clearRectしないと描画内容が新規更新されない。色がなぜか上塗りされる
-    ctx.clearRect(
+    ctxMain.clearRect(
         fillStartPostion.x,
         fillStartPostion.y,
         canvasInfo.size.width,
         canvasInfo.size.height
     );
 
-    ctx.fillStyle = `rgba(${rgbRed},${rgbGreen},${rgbBlue}, 0.7)`;
-    ctx.fillRect(
+    ctxMain.fillStyle = `rgba(${rgbRed},${rgbGreen},${rgbBlue}, 0.7)`;
+    ctxMain.fillRect(
         fillStartPostion.x,
         fillStartPostion.y,
         canvasInfo.size.width,
@@ -144,20 +144,24 @@ colorButton.addEventListener("click", function () {
 
     var imageObjA = new Image();
     imageObjA.onload = function () {
-        ctx.drawImage(imageObjA, image.position.width, image.position.height);
+        ctxMain.drawImage(
+            imageObjA,
+            image.position.width,
+            image.position.height
+        );
     };
     imageObjA.src = currentImgPath;
 
     // スカート以外に対しての余白部分に対しての色の上書きによる視覚上の削除
-    ctx1.clearRect(
+    ctxXor.clearRect(
         fillStartPostion.x,
         fillStartPostion.y,
         canvasInfo.size.width,
         canvasInfo.size.height
     );
-    ctx1.fillStyle = "white"; //外側を白色に埋めてる
+    ctxXor.fillStyle = "white"; //外側を白色に埋めてる
 
-    ctx1.fillRect(
+    ctxXor.fillRect(
         fillStartPostion.x,
         fillStartPostion.y,
         canvasInfo.size.width,
@@ -165,10 +169,10 @@ colorButton.addEventListener("click", function () {
     );
     var imageObjB = new Image();
     imageObjB.onload = function () {
-        ctx1.drawImage(imageObjB, image.position.width, image.position.height);
+        ctxXor.drawImage(imageObjB, image.position.width, image.position.height);
     };
     imageObjB.src = currentImgPath;
-    ctx1.globalCompositeOperation = "xor";
+    ctxXor.globalCompositeOperation = "xor";
 });
 
 // cloth1のボタン
