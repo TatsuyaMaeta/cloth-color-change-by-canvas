@@ -1,5 +1,6 @@
 // キャンバスのサイズ管理
-const sizePx = 500;
+const sizePxH = 500;
+const sizePxW = 600;
 const sizeUnit = "px";
 
 // キャンバスの情報取得
@@ -12,7 +13,7 @@ const ctx1 = canvas1.getContext("2d");
 
 // スカートに対して色を乗算してカラーリング
 ctx.fillStyle = "rgba(0, 0, 0, 0)";
-ctx.fillRect(0, 10, sizePx, sizePx);
+ctx.fillRect(0, 10, sizePxW, sizePxH);
 const imageDataPath = "./img/cloth1.png";
 // "./img/cloth1.png";って書くとgithub Pagesだとエラーになるから注意
 var imageObjA = new Image();
@@ -24,7 +25,7 @@ ctx.globalCompositeOperation = "multiply";
 
 // スカート以外に対しての余白部分に対しての色の上書きによる視覚上の削除
 ctx1.fillStyle = "white"; //外側を白色に埋めてる
-ctx1.fillRect(0, 10, sizePx, sizePx);
+ctx1.fillRect(0, 10, sizePxW, sizePxH);
 var imageObjB = new Image();
 imageObjB.onload = function () {
     ctx1.drawImage(imageObjB, 0, 10);
@@ -43,10 +44,10 @@ colorButton.addEventListener("click", function () {
     console.log(`RGB: ${rgbRed},${rgbGreen},${rgbBlue}`);
 
     // clearRectしないと描画内容が新規更新されない。色がなぜか上塗りされる
-    ctx.clearRect(0, 0, sizePx, sizePx);
+    ctx.clearRect(0, 0, sizePxW, sizePxH);
 
     ctx.fillStyle = `rgba(${rgbRed},${rgbGreen},${rgbBlue}, 0.7)`;
-    ctx.fillRect(0, 10, sizePx, sizePx);
+    ctx.fillRect(0, 10, sizePxW, sizePxH);
 
     var imageObjA = new Image();
     imageObjA.onload = function () {

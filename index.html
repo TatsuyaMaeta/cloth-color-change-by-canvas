@@ -5,22 +5,24 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
+        <link rel="stylesheet" href="./css/reset.css">
         <link rel="stylesheet" href="./css/style.css" />
     </head>
     <body>
         <!-- <canvas width="500" height="500" id="cnvs">
             キャンバスの表示内容を説明する代替テキストです。
         </canvas> -->
-
-        <canvas width="500" height="500" id="canvas">
-            キャンバスの表示内容を説明する代替テキストです。
-        </canvas>
-        <canvas width="500" height="500" id="canvas1">
-            キャンバスの表示内容を説明する代替テキストです。
-        </canvas>
+        <div class="cvs_wrapper">
+            <canvas width="600" height="500" id="canvas">
+                キャンバスの表示内容を説明する代替テキストです。
+            </canvas>
+            <canvas width="600" height="500" id="canvas1">
+                キャンバスの表示内容を説明する代替テキストです。
+            </canvas>
+        </div>
         <div id="aaa"></div>
 
-        <div>
+        <div id="color-picker">
             <label for="head"><h3>カラーリングを選択</h3></label>
             <input type="color" id="addColor" name="head" value="#dc143c" />
             <button id="btn">決定</button>
