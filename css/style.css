@@ -6,6 +6,11 @@ canvas {
 }
 #canvas {
     mix-blend-mode: difference;
+    margin-top: 24px;
+}
+
+#canvas1 {
+    margin-top: 24px;
 }
 
 #image-select {
@@ -23,7 +28,7 @@ canvas {
 
 .cvs_wrapper {
     justify-content: center;
-    margin: 0 auto;
+    margin: 24px auto 0;
     width: 500px;
     height: 500px;
 }
