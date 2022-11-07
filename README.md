@@ -1,1 +1,1 @@
-# cloth-color-change-by-canvas
+# clothes-color-change-by-canvas
