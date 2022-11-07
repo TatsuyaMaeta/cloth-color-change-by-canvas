@@ -54,6 +54,8 @@ colorButton.addEventListener("click", function () {
     imageObjA.src = imageData;
 });
 
+console.log(location.href);
+
 // 参照サイト
 // https://www.google.com/search?q=globalcompositeoperation+canvas+double&rlz=1C5CHFA_enJP844JP845&sxsrf=ALiCzsY5_9GZB_wjgSpFOzDtone36AKQ1Q:1667776686847&ei=rkBoY4auM8LCoASywYLYDg&start=10&sa=N&ved=2ahUKEwiGve-n2Jr7AhVCIYgKHbKgAOsQ8NMDegQIKBAW&biw=834&bih=639&dpr=2
 // https://stackoverflow.com/questions/53622774/globalcompositeoperation-on-2-canvases
