@@ -1,0 +1,16 @@
+canvas {
+    border: 1px solid;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#canvas {
+    mix-blend-mode: difference;
+}
+
+/* 下は関係別 */
+
+#aaa {
+    margin-top: 520px;
+}
+
