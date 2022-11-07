@@ -4,12 +4,12 @@ canvas {
     top: 0;
     left: 50;
 }
-#canvas {
+#canvasMain {
     mix-blend-mode: difference;
     margin-top: 24px;
 }
 
-#canvas1 {
+#canvasXor {
     margin-top: 24px;
 }
 

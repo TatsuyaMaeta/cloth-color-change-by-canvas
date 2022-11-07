@@ -211,3 +211,6 @@ clothesButtonC.addEventListener("click", callbackFunction(imagePathArray[2]));
 
 // https://ics.media/entry/7258/
 // https://pengi-n.co.jp/blog/mix-blend-mode/
+
+// canvas Library一覧
+// https://www.webopixel.net/javascript/844.html
