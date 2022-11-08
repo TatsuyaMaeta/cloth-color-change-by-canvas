@@ -23,7 +23,6 @@ canvas {
 #image-select img {
     width: 100px;
     height: 100px;
-    border: solid 0.5px;
 }
 
 .cvs_wrapper {
