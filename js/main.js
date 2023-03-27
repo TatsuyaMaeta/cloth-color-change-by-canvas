@@ -23,6 +23,7 @@ const imagePathArray = [
     "img/clothes2.png",
     "img/clothes3.png",
 ];
+
 const imageDataPath = imagePathArray[0];
 currentImgPath = imageDataPath;
 
